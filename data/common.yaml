@@ -4,7 +4,6 @@ bind::defaults::random_device: '/dev/random'
 
 bind::forwarders: ''
 bind::forward: ''
-bind::dnssec: true
 bind::filter_ipv6: false
 bind::version: ''
 bind::auth_nxdomain: false
