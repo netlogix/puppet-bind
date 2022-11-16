@@ -32,9 +32,11 @@ options {
 	filter-aaaa-on-v4 yes;
 <%- end -%>
 <%- if @dnssec -%>
+<% if @facts['lsbdistrelease'] < '20.04' -%>
 	dnssec-enable yes;
-	dnssec-validation yes;
 	dnssec-lookaside no;
+<% end -%>
+	dnssec-validation yes;
 <%-   if @isc_bind_keys -%>
         bindkeys-file "<%= @isc_bind_keys %>";
 <%-   end -%>
