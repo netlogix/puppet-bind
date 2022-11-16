@@ -31,7 +31,7 @@ options {
 <%- if @filter_ipv6 -%>
 	filter-aaaa-on-v4 yes;
 <%- end -%>
-<%- if @dnssec -%>
+<%- if @dnssec and @facts['lsbdistrelease'] < '22.04' -%>
 	dnssec-enable yes;
 	dnssec-validation yes;
 	dnssec-lookaside no;
