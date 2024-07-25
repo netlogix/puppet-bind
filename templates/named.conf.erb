@@ -28,13 +28,15 @@ options {
 <%- end -%>
 	auth-nxdomain <%= @auth_nxdomain ? 'yes' : 'no' %>;
 	listen-on-v6 { any; };
-	dnssec-enable <%= @dnssec ? 'yes' : 'no' %>;
 <%- if @filter_ipv6 -%>
 	filter-aaaa-on-v4 yes;
 <%- end -%>
 <%- if @dnssec -%>
+<% if @facts['lsbdistrelease'] < '20.04' -%>
+	dnssec-enable yes;
+	dnssec-lookaside no;
+<% end -%>
 	dnssec-validation yes;
-	dnssec-lookaside auto;
 <%-   if @isc_bind_keys -%>
         bindkeys-file "<%= @isc_bind_keys %>";
 <%-   end -%>
